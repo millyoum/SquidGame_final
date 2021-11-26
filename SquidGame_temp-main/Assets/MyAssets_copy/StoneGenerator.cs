@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class StoneGenerator : MonoBehaviour
 {
-    
+
     public GameObject StonePrefeb;  //game object 선언
     public GameObject player;
+    public GameObject stone;
     public Vector3 pos;
     public int stone_num = 3;
-   
+
     BeanUI beanManager;
 
     // Start is called before the first frame update
@@ -22,32 +23,32 @@ public class StoneGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        pos = player.transform.position; //플레이어 센터 좌표
+        pos = player.transform.position + new Vector3(0, 0.5f, 0); //생성 좌표
+
+        Quaternion rot = Quaternion.Euler(-30f, 0f, 0f); //ray 방향 회전 위한 쿼터니언 생 
+
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);  //마우스 클릭으로 ray 구함
+        Vector3 shooting = ray.direction; //ray의 방향구하기
+        shooting = shooting.normalized; //던지는 힘 설정
+        shooting = rot * shooting; //회전
+
+        Debug.DrawRay(pos, shooting, Color.cyan);
 
         if (Input.GetMouseButtonDown(0)) //마우스 클릭하면
         {
-            Debug.Log("남은 구슬 아이템 개수: " + stone_num);
-
             if (stone_num > 0 && stone_num <= 3)
             {
                 //플레이어 위치에서 게임 오브젝트 생성
-                GameObject stone = Instantiate(StonePrefeb, pos, Quaternion.identity) as GameObject;
+                stone = Instantiate(StonePrefeb, pos, Quaternion.identity) as GameObject;
                 stone.tag = "stone";
-                stone.transform.parent = player.transform; //플레이어 종속 아이템으로 함                                                                                  
-
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); //ray를 이용해 마우스 클릭점 구함
-
-                Vector3 shooting = ray.direction; //ray의 방향구하기
-
-                shooting = shooting.normalized * 1000; //던지는 힘 설정
-
-                stone.GetComponent<StoneController>().Shoot(shooting); //stone controller의 함수로 구슬 던지기
+                stone.transform.parent = player.transform; //플레이어 종속 아이템으로 함
+                //stone controller의 함수로 구슬 던지기
+                stone.GetComponent<StoneController>().Shoot(shooting);
             }
 
             stone_num -= 1;
+            Debug.Log("남은 구슬 아이템 개수: " + stone_num);
             beanManager.SetBean(stone_num);
         }
-
-        
     }
 }

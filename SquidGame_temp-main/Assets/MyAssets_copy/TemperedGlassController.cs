@@ -29,6 +29,7 @@ public class TemperedGlassController : MonoBehaviour
         {
             GetComponent<AudioSource>().clip = tempered_sound;
             GetComponent<AudioSource>().Play();
+            Destroy(collision.gameObject);
         }
     }
 }

@@ -129,28 +129,19 @@ public class Work : MonoBehaviour
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
 
-        //플레이어가 깨지는 유리발판을 밟는 경우
-        if (hit.collider.CompareTag("BreakGlass"))
-        {
-            Debug.Log("플레이어가 일반 유리 밟음");
-            glass.GetComponent<BreakableWindow>().breakWindow();
- 
-        }
         //플레이어가 바닥에 떨어졌을 시 처음 자리로 부활
         if (hit.collider.CompareTag("deadFloor"))
         {
             Debug.Log("플레이어가 deadFloor 밟음 REPOSITION");
             transform.position = new Vector3(0, 0.5f, 0);
         }
+
         //게임 클리어시
         if (hit.collider.CompareTag("endFloor"))
         {
 
             GameManager.instance.GameClear();
         }
+
     }
-
-
-
-
 }

@@ -239,7 +239,6 @@ public class BreakableWindow : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision)
     {
-
         //구슬 유리에 던질때 태그로 구분
         if (collision.collider.CompareTag("stone"))
         {
@@ -247,29 +246,15 @@ public class BreakableWindow : MonoBehaviour {
             //사운드재생
             GetComponent<AudioSource>().clip = breakable_sound;
             GetComponent<AudioSource>().Play();
-
+            Destroy(collision.gameObject);
         }
- 
-        //원래 모드
-        if (useCollision == true)
-        {
-            if (health > 0)
-            {
-                health -= collision.impulse.magnitude;
-                if (health < 0)
-                {
-                    health = 0;
-                    breakWindow();
-                }
-            }
-            else breakWindow();
-        }        
-    }
 
-    private void OnCollisionExit(Collision collision)
-    {
-        //충돌끝나면 충돌변수 초기화 
-        useCollision = true;
+        //플레이어가 밟을 때
+        if (collision.collider.CompareTag("Player"))
+        {
+            Debug.Log("플레이어가 깨지는 유리 밟음");
+            breakWindow();
+        }
     }
 }
 
