@@ -38,7 +38,7 @@ public class StoneGenerator : MonoBehaviour
             {
                 //플레이어 위치에서 게임 오브젝트 생성
                 stone = Instantiate(StonePrefeb, pos, Quaternion.identity) as GameObject;
-                stone.tag = "stone"; //태그 붙
+                stone.tag = "stone"; //태그 붙임
                 stone.transform.parent = player.transform; //플레이어 종속 아이템으로 함
                 //stone controller의 함수로 구슬 던지기
                 stone.GetComponent<StoneController>().Shoot(shooting);
