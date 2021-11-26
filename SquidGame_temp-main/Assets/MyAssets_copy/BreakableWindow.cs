@@ -229,6 +229,7 @@ public class BreakableWindow : MonoBehaviour {
         if (breakingSound != null)
         {
             GetComponent<AudioSource>().clip = breakingSound;
+            GetComponent<AudioSource>().volume = 0.1f;
             GetComponent<AudioSource>().Play();
             
         }
