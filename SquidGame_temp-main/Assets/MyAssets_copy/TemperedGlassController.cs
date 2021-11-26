@@ -22,9 +22,10 @@ public class TemperedGlassController : MonoBehaviour
         
     }
 
-    //다른 rigidbody와 충돌할 경우 사운드 재생
+    
     void OnCollisionEnter(Collision collision)
     {
+        //구슬과 충돌할 경우에만 사운드 재생
         if (collision.collider.CompareTag("stone"))
         {
             GetComponent<AudioSource>().clip = tempered_sound;

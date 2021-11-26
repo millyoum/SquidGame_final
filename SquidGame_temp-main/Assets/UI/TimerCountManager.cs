@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-// UI사용
+
 using UnityEngine.UI;
 
 
@@ -29,7 +29,7 @@ public class TimerCountManager : MonoBehaviour
 
         if (Mathf.Floor(countDown) <= 0)
         {
-            // 게임오버 호출
+            // ???????? ????
 
             GameManager.instance.GameOver();
         }

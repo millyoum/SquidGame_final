@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Button : MonoBehaviour
 {
-    // HPObject = GameObject.Find("Hp").GetComponent<HpUI>();
     bool buttonOn;
     public GameObject TimerManager;
     TimerCountManager Tm;
@@ -15,6 +14,7 @@ public class Button : MonoBehaviour
             Tm.SetTimerOn();
             buttonOn = true;
         }
+
         else
         {
             Tm.SetTimerStop();

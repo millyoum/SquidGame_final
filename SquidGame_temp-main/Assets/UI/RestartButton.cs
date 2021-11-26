@@ -18,11 +18,13 @@ public class RestartButton : MonoBehaviour
         {
             buttonOn = true;
         }
+
         else
         {
             buttonOn = false;
         }
     }
+
     // Update is called once per frame
     void Update()
     {

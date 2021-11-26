@@ -236,7 +236,6 @@ public class BreakableWindow : MonoBehaviour {
         return splinters.ToArray();
     }
 
-
     void OnCollisionEnter(Collision collision)
     {
         //구슬 유리에 던질때 태그로 구분

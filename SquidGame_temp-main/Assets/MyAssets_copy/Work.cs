@@ -9,6 +9,7 @@ public class Work : MonoBehaviour
     public float jumpSpeed = 0.001F;
     public float gravity = 0.001F;
     private Vector3 moveDirection = Vector3.zero;
+    private Vector3 start_pos = new Vector3(0, 0.5f, 0);
 
     //플레이어와 유리발판 사이 인터랙션 위해 게임 오브젝트 변수 생성
     public GameObject glass;
@@ -21,6 +22,7 @@ public class Work : MonoBehaviour
     {
         //태그로 깨지는 유리 찾음
         glass = GameObject.FindGameObjectWithTag("BreakGlass");
+
         hpManager = GameObject.Find("Hp").GetComponent<HpUI>();
     }
 
@@ -101,11 +103,13 @@ public class Work : MonoBehaviour
         {
             move_side += 1f;
         }
+
         //R키를 누를 시 처음 자리로 부활
         if (Input.GetKey(KeyCode.R))
         {
-            transform.position = new Vector3(0, 0.5f, 0);
+            transform.position = start_pos;
         }
+
         transform.Translate(new Vector3(move_side, 0f, move_forth) * Time.deltaTime * 5);
 
     }
@@ -113,7 +117,7 @@ public class Work : MonoBehaviour
     void OnCollisionExit(Collision hit)
     {
 
-        //플레이어가 바닥에 떨어졌을 시 처음 자리로 부활
+        //플레이어가 바닥에 떨어졌을 시 hp 감소
         if (hit.collider.CompareTag("deadFloor"))
         {
             hp -= 1;
@@ -125,7 +129,7 @@ public class Work : MonoBehaviour
 
     }
 
-    //플레이어와 충돌 물체 처리, 물체를 밀 때 사용한다네요
+    //플레이어와 충돌 물체 처리, 물체를 밀 때 사용
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
 
@@ -133,13 +137,12 @@ public class Work : MonoBehaviour
         if (hit.collider.CompareTag("deadFloor"))
         {
             Debug.Log("플레이어가 deadFloor 밟음 REPOSITION");
-            transform.position = new Vector3(0, 0.5f, 0);
+            transform.position = start_pos;
         }
 
-        //게임 클리어시
+        //게임 클리어 시
         if (hit.collider.CompareTag("endFloor"))
         {
-
             GameManager.instance.GameClear();
         }
 
