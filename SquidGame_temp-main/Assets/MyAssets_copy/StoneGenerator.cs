@@ -27,7 +27,7 @@ public class StoneGenerator : MonoBehaviour
 
         Quaternion rot = Quaternion.Euler(-30f, 0f, 0f); //ray 방향 회전 위한 쿼터니언
 
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);  //마우스 클릭으로 ray 구함
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);  //마우스 클릭 위치 구하기
         Vector3 shooting = ray.direction; //ray의 방향구하기
         shooting = shooting.normalized;
         shooting = rot * shooting; //회전
