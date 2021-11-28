@@ -35,7 +35,8 @@ public class BreakableWindow : MonoBehaviour {
 
     [Space]
     public AudioClip breakingSound;
-    public AudioClip breakable_sound;
+
+    public AudioClip breakable_sound; //sound source: 직접녹음
 
     [HideInInspector]
     public bool isBroken = false;

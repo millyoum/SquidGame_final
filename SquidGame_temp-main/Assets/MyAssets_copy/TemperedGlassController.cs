@@ -8,7 +8,7 @@ public class TemperedGlassController : MonoBehaviour
 { 
 
     [Space]
-    public AudioClip tempered_sound;
+    public AudioClip tempered_sound; //sound source: 직접녹음
 
     // Start is called before the first frame update
     void Start()
