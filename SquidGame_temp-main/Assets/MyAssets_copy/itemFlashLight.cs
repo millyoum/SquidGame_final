@@ -27,13 +27,10 @@ public class itemFlashLight : MonoBehaviour
         //마우스 왼쪽 버튼 입력
         if (Input.GetMouseButtonDown(1))
         {
-            Debug.Log("남은 손전등 아이템 개수: " + light_num);
-
             //손전등 개수가 양수면 손전등 켜기
             if (light_num > 0 && light_num <= 3)
             {
                 this.GetComponent<Light>().enabled = true;
-                Debug.Log("손전등 비춤");
             }
 
             //손전등 아이템 수 줄이고 UI 호출

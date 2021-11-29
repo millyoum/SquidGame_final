@@ -27,7 +27,6 @@ public class itemLightGlass : MonoBehaviour
         if (col.tag == "Player" && flash_item.GetComponent<Light>().enabled == true)
         {
             GetComponent<Renderer>().material = unbreakable;
-            Debug.Log("바닥 색깔 체크");
         }
 
         //손전등 꺼진 상태일 때 일반유리 material로 전환

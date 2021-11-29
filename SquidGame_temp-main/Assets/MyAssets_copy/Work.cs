@@ -117,7 +117,6 @@ public class Work : MonoBehaviour
         //플레이어가 바닥에 떨어졌을 시 hp 감소
         if (hit.collider.CompareTag("deadFloor"))
         {
-            Debug.Log("dead floor 밟음");
             dead = true;
         }
 
@@ -126,7 +125,6 @@ public class Work : MonoBehaviour
             hp -= 1;
             if (hp <= 0)
                 GameManager.instance.GameOver();
-            Debug.Log("hp 줄어듦");
             hpManager.SetHp(hp);
 
             dead = false;
@@ -141,7 +139,6 @@ public class Work : MonoBehaviour
         //플레이어가 바닥에 떨어졌을 시 처음 자리로 부활
         if (hit.collider.CompareTag("deadFloor"))
         {
-            Debug.Log("플레이어가 deadFloor 밟음 REPOSITION");
             transform.position = start_pos;
         }
 
