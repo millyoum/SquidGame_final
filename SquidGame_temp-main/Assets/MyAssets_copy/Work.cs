@@ -15,6 +15,9 @@ public class Work : MonoBehaviour
     HpUI hpManager;
     private int hp = 5;
 
+    //플레이어가 게임 탈락했을 경우 판별 변수
+    private bool dead = false;
+
     private void Start()
     {
         hpManager = GameObject.Find("Hp").GetComponent<HpUI>();
@@ -108,17 +111,25 @@ public class Work : MonoBehaviour
 
     }
 
-    void OnCollisionExit(Collision hit)
+    void OnCollisionEnter(Collision hit)
     {
 
         //플레이어가 바닥에 떨어졌을 시 hp 감소
         if (hit.collider.CompareTag("deadFloor"))
         {
+            Debug.Log("dead floor 밟음");
+            dead = true;
+        }
+
+        if (hit.collider.CompareTag("startFloor") && dead == true)
+        {
             hp -= 1;
             if (hp <= 0)
                 GameManager.instance.GameOver();
-            Debug.Log("플레이어가 deadFloor 밟음 HP");
+            Debug.Log("hp 줄어듦");
             hpManager.SetHp(hp);
+
+            dead = false;
         }
 
     }
