@@ -11,18 +11,12 @@ public class Work : MonoBehaviour
     private Vector3 moveDirection = Vector3.zero;
     private Vector3 start_pos = new Vector3(0, 0.5f, 0);
 
-    //플레이어와 유리발판 사이 인터랙션 위해 게임 오브젝트 변수 생성
-    public GameObject glass;
-
     //hpUI 가져오기
     HpUI hpManager;
     private int hp = 5;
 
     private void Start()
     {
-        //태그로 깨지는 유리 찾음
-        glass = GameObject.FindGameObjectWithTag("BreakGlass");
-
         hpManager = GameObject.Find("Hp").GetComponent<HpUI>();
     }
 
